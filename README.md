@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/kjpye/geo-ellipsoid/actions/workflows/test.yml/badge.svg)](https://github.com/kjpye/geo-ellipsoid/actions)
+
 NAME
 ====
 
