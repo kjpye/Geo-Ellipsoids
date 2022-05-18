@@ -1,6 +1,39 @@
 use Test;
 use Geo::Ellipsoid;
 
-pass "replace me";
+plan 24;
 
-done-testing;
+my $major = 6378160;
+my $minor = 6356774.719;
+my $inverse-flattening = 298.25;
+my $eccentricity-squared = 0.006694542;
+
+my $test1 = Geo::Ellipsoid.new(name => 'AN 66', semi-major-axis => $major, semi-minor-axis => $minor);
+my $test2 = Geo::Ellipsoid.new(name => 'AN 66', semi-major-axis => $major, inverse-flattening => $inverse-flattening);
+my $test3 = Geo::Ellipsoid.new(name => 'AN 66', semi-major-axis => $major, eccentricity-squared => $eccentricity-squared);
+
+is-approx $test1.inverse-flattening, $inverse-flattening, 'inverse-flattening from semi-minor-eaxis';
+is-approx $test1.eccentricity-squared, $eccentricity-squared, 'eccentricity-squared from semi-min-axis';
+is-approx $test2.semi-minor-axis, $minor, 'semi-minor-axis from inverse-flattening';
+is-approx $test2.eccentricity-squared, $eccentricity-squared, 'eccentricity-squared from inverse-flattening';
+is-approx $test3.semi-minor-axis, $minor, 'semi-minor-axis from eccentricity-squared';
+is-approx $test3.inverse-flattening, $inverse-flattening, 'inverse-flattening from eccentricity-squared';
+
+is-approx %Geo::Ellipsoid::Ellipsoid{'Australian National'}.semi-minor-axis, $minor, 'Australian National';
+is-approx %Geo::Ellipsoid::Ellipsoid{'Airy'}.eccentricity-squared, 0.00667054, 'Airy eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'Arc 1950'}.eccentricity-squared, 0.006803481, 'Arc 1950 eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'Australian National'}.eccentricity-squared, 0.00669454, 'Australian National eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'Australian National'}.semi-minor-axis, 6356774.719, 'Australian National semi-minor';
+is-approx %Geo::Ellipsoid::Ellipsoid{'Bessel 1841'}.eccentricity-squared, 0.006674372, 'Bessel 1841 eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'Clarke 1866'}.eccentricity-squared, 0.006768658, 'Clarke 1866 eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'Clarke 1880'}.eccentricity-squared, 0.006803511, 'Clarke 1880 eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'GRS 1967'}.eccentricity-squared, 0.006694605, 'GRS 1967 eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'GRS 1980'}.eccentricity-squared, 0.006694380, 'GRS 1980 eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'Helmert 1906'}.eccentricity-squared, 0.006693422, 'Helmert 1906 eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'International'}.eccentricity-squared, 0.00672267, 'International eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'Krassovsky'}.eccentricity-squared, 0.006693422, 'Krassovsky eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'NAD 27'}.eccentricity-squared, 0.006768658, 'NAD 27 eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'South American 1969'}.eccentricity-squared, 0.006694542, 'South American 1969 eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'WGS 66'}.eccentricity-squared, 0.006694542, 'WGS 66 eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'WGS-72'}.eccentricity-squared, 0.006694318, 'WGS 72 eccentricity';
+is-approx %Geo::Ellipsoid::Ellipsoid{'WGS-84'}.eccentricity-squared, 0.00669438, 'WGS 84 eccentricity';

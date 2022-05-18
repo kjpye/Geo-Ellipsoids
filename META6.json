@@ -1,13 +1,13 @@
 {
   "auth": "zef:kjpye",
   "authors": [
-    "Kevin Pye"
+    "Kevin Pye (kjfez@pye.id.au)"
   ],
   "build-depends": [
   ],
   "depends": [
   ],
-  "description": "blah blah blah",
+  "description": "Geodetic ellipsoid definitions",
   "license": "Artistic-2.0",
   "name": "Geo::Ellipsoid",
   "perl": "6.d",
