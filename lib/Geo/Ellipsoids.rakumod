@@ -1,6 +1,6 @@
-unit class Geo::Ellipsoid;
+unit class Geo::Ellipsoids;
 
-has Str $.name                   is required;
+has Str  $.name                  is required;
 has Real $.semi-major-axis       is required;
 has Real $.semi-minor-axis;
 has Real $.eccentricity-squared;
@@ -11,8 +11,8 @@ sub prefix:<√> { sqrt($^a) }
 submethod TWEAK {
     fail "Specify semi-major-axis and exactly one of semi-minor-access, eccentricity-squared or inverse-flattening"
       unless $!semi-minor-axis.defined
-      xor    $!inverse-flattening.defined
-      xor    $!eccentricity-squared.defined;
+         xor $!inverse-flattening.defined
+         xor $!eccentricity-squared.defined;
     
     if $!inverse-flattening.defined {
         $!eccentricity-squared = 2 ÷ $!inverse-flattening - 1÷$!inverse-flattening²;
@@ -85,21 +85,21 @@ our sub ellipsoid-names() {
 
 =head1 NAME
 
-Geo::Ellipsoid - Geodetic ellipsoid definitions
+Geo::Ellipsoids - Geodetic ellipsoid definitions
 
 =head1 SYNOPSIS
 =begin code :lang<raku>
-    use Geo::Ellipsoid;
+    use Geo::Ellipsoids;
     my $ellipsoid = %Ellipsoids{"Australian National"};
     my $semimajor-axis = $ellipsoid.semi-major-axis;
 =end code
 
 =head1 DESCRIPTION
 
-Geo::Ellipsoid is a collection of definitions of ellipsoids
+Geo::Ellipsoids is a collection of definitions of ellipsoids
 useful for mapping purposes.
 
-A class Geo::Ellipsoid is defined which contains five accessors:
+A class Geo::Ellipsoids is defined which contains five accessors:
 
 =item C<name> — the name of the ellipsoid.
 
@@ -114,12 +114,12 @@ A class Geo::Ellipsoid is defined which contains five accessors:
 Objects of this class are created by specifying the name,
 the semi-major axis, and exactly one of the semi-minor axis,
 the inverse flattening or the square of the eccentricity.
-The other values are created at object creation time and may
+The other values are calculated at object creation time and may
 be accessed using the accessors.
 
 In addition an array of predefined ellipsoids is available as
-C<@Geo::Ellipsoid::Ellipsoids>,
-and as a hash indexed on the name as C<%Geo::Ellipsoid::Ellipsoids>.
+C<@Geo::Ellipsoids::Ellipsoids>,
+and as a hash indexed on the name as C<%Geo::Ellipsoids::Ellipsoids>.
 
 The following subroutines are available:
 
@@ -219,7 +219,11 @@ The ellipsoids available are as follows:
 
 Kevin Pye <Kevin@pye.id.au>
 
-Much of the data in this module is taken from the Perl 5 Geo::Coordinates::UTM module.
+While this is similar in intent to the Perl module Geo::Ellipsoids, its actual
+history is part of the Perl Geo::Coordinates::UTM module, via the Raku
+equivalent.
+
+Much of the data in this module is taken from the Perl Geo::Coordinates::UTM module.
 
 =head1 COPYRIGHT AND LICENSE
 

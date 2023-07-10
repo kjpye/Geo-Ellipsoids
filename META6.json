@@ -9,10 +9,10 @@
   ],
   "description": "Geodetic ellipsoid definitions",
   "license": "Artistic-2.0",
-  "name": "Geo::Ellipsoid",
+  "name": "Geo::Ellipsoids",
   "perl": "6.d",
   "provides": {
-    "Geo::Ellipsoid": "lib/Geo/Ellipsoid.rakumod"
+    "Geo::Ellipsoids: "lib/Geo/Ellipsoids.rakumod"
   },
   "resources": [
   ],
