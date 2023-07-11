@@ -12,11 +12,11 @@
   "name": "Geo::Ellipsoids",
   "perl": "6.d",
   "provides": {
-    "Geo::Ellipsoids: "lib/Geo/Ellipsoids.rakumod"
+    "Geo::Ellipsoids": "lib/Geo/Ellipsoids.rakumod"
   },
   "resources": [
   ],
-  "source-url": "https://gitlab.com/kjpye/geo-ellipsoid.git",
+  "source-url": "https://gitlab.com/kjpye/geo-ellipsoids.git",
   "tags": [
   ],
   "test-depends": [

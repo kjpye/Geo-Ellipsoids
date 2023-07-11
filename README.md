@@ -1,15 +1,15 @@
-[![Actions Status](https://github.com/kjpye/geo-ellipsoid/actions/workflows/test.yml/badge.svg)](https://github.com/kjpye/geo-ellipsoid/actions)
+[![Actions Status](https://github.com/kjpye/geo-ellipsoids/actions/workflows/test.yml/badge.svg)](https://github.com/kjpye/geo-ellipsoids/actions)
 
 NAME
 ====
 
-Geo::Ellipsoid - Geodetic ellipsoid definitions
+Geo::Ellipsoids - Geodetic ellipsoid definitions
 
 SYNOPSIS
 ========
 
 ```raku
-    use Geo::Ellipsoid;
+    use Geo::Ellipsoids;
     my $ellipsoid = %Ellipsoids{"Australian National"};
     my $semimajor-axis = $ellipsoid.semi-major-axis;
 ```
@@ -17,9 +17,9 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-Geo::Ellipsoid is a collection of definitions of ellipsoids useful for mapping purposes.
+Geo::Ellipsoids is a collection of definitions of ellipsoids useful for mapping purposes.
 
-A class Geo::Ellipsoid is defined which contains five accessors:
+A class Geo::Ellipsoids is defined which contains five accessors:
 
   * `name` — the name of the ellipsoid.
 
@@ -31,9 +31,9 @@ A class Geo::Ellipsoid is defined which contains five accessors:
 
   * `eccentricity-squared` — the square of the ellipsoid's eccentricity.
 
-Objects of this class are created by specifying the name, the semi-major axis, and exactly one of the semi-minor axis, the inverse flattening or the square of the eccentricity. The other values are created at object creation time and may be accessed using the accessors.
+Objects of this class are created by specifying the name, the semi-major axis, and exactly one of the semi-minor axis, the inverse flattening or the square of the eccentricity. The other values are calculated at object creation time and may be accessed using the accessors.
 
-In addition an array of predefined ellipsoids is available as `@Geo::Ellipsoid::Ellipsoids`, and as a hash indexed on the name as `%Geo::Ellipsoid::Ellipsoids`.
+In addition an array of predefined ellipsoids is available as `@Geo::Ellipsoids::Ellipsoids`, and as a hash indexed on the name as `%Geo::Ellipsoids::Ellipsoids`.
 
 The following subroutines are available:
 
@@ -115,12 +115,19 @@ The ellipsoids available are as follows:
 
   * NAD 83
 
+SEE ALSO
+========
+
+The module [Geo::Ellipsoid](https://raku.land/zef:tbrowder/Geo::Ellipsoid) has routines to perform calculations on the ellipsoid.
+
 AUTHOR
 ======
 
-Kevin Pye <Kevin@pye.id.au>
+Kevin Pye <kjpraku@pye.id.au>
 
-Much of the data in this module is taken from the Perl 5 Geo::Coordinates::UTM module.
+While this is similar in intent to the Perl module Geo::Ellipsoids, its actual history is part of the Perl Geo::Coordinates::UTM module, via the Raku equivalent. None of the useful methods of the Perl module have yet been implemented.
+
+Much of the data in this module is taken from the Perl Geo::Coordinates::UTM module.
 
 COPYRIGHT AND LICENSE
 =====================

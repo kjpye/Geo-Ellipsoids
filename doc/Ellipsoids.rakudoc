@@ -1,0 +1,157 @@
+=begin pod
+
+=head1 NAME
+
+Geo::Ellipsoids - Geodetic ellipsoid definitions
+
+=head1 SYNOPSIS
+=begin code :lang<raku>
+    use Geo::Ellipsoids;
+    my $ellipsoid = %Ellipsoids{"Australian National"};
+    my $semimajor-axis = $ellipsoid.semi-major-axis;
+=end code
+
+=head1 DESCRIPTION
+
+Geo::Ellipsoids is a collection of definitions of ellipsoids
+useful for mapping purposes.
+
+A class Geo::Ellipsoids is defined which contains five accessors:
+
+=item C<name> — the name of the ellipsoid.
+
+=item C<semi-major-axis> — the semi-major axis of the ellipsoid in metres.
+
+=item C<semi-minor-access> — the semi-minor axis of the ellipsoid in metres. 
+
+=item C<inverse-flattening> — the reciprocal of the ellipsoid flattening.
+
+=item C<eccentricity-squared> — the square of the ellipsoid's eccentricity.
+
+Objects of this class are created by specifying the name,
+the semi-major axis, and exactly one of the semi-minor axis,
+the inverse flattening or the square of the eccentricity.
+The other values are calculated at object creation time and may
+be accessed using the accessors.
+
+In addition an array of predefined ellipsoids is available as
+C<@Geo::Ellipsoids::Ellipsoids>,
+and as a hash indexed on the name as C<%Geo::Ellipsoids::Ellipsoids>.
+
+The following subroutines are available:
+
+=item C<cleanup-ellisoid-name> — takes a string, and canonicalises
+it to make it more likely to find a match in the
+C<%Ellipsoids> hash. Spaces, dashes and text between parentheses
+are removed, and the result forced to lower case.
+The standard ellisoids below appear in the C<%Ellipsoids> hash with both
+their full name and their canonicalised name as keys.
+
+=item C<ellipsoid-names> — returns an array containing a sorted list of the non-canonicalised names of the ellipsoids in C<@Ellipsoids>.
+
+=head2 Datums and Ellipsoids
+
+Unlike local surveys, which treat the Earth as a plane, the precise
+determination of the latitude and longitude of points over a broad area
+must take into account the actual shape of the Earth. To achieve the
+precision necessary for accurate location, the Earth cannot be assumed
+to be a sphere. Rather, the Earth's shape more closely approximates an
+ellipsoid (oblate spheroid): flattened at the poles and bulging at the
+Equator. Thus the Earth's shape, when cut through its polar axis,
+approximates an ellipse. A "Datum" is a standard representation of shape
+and offset for coordinates, which includes an ellipsoid and an origin.
+You must consider the Datum when working with geospatial data, since
+data with two different Datums will not line up. The difference can be as
+much as a kilometer!
+
+=head2 Predefined ellipsoids
+
+The ellipsoids available are as follows:
+
+=item Airy
+
+=item Australian National
+
+=item Bessel 1841
+
+=item Bessel 1841 (Nambia)
+
+=item Clarke 1866
+
+=item Clarke 1880
+
+=item Everest 1830 (India)
+
+=item Fischer 1960 (Mercury)
+
+=item Fischer 1968
+
+=item GRS 1967
+
+=item GRS 1980
+
+=item Helmert 1906
+
+=item Hough
+
+=item International
+
+=item Krassovsky
+
+=item Modified Airy
+
+=item Modified Everest
+
+=item Modified Fischer 1960
+
+=item South American 1969
+
+=item WGS 60
+
+=item WGS 66
+
+=item WGS-72
+
+=item WGS-84
+
+=item Everest 1830 (Malaysia)
+
+=item Everest 1956 (India)
+
+=item Everest 1964 (Malaysia and Singapore)
+
+=item Everest 1969 (Malaysia)
+
+=item Everest (Pakistan)
+
+=item Indonesian 1974
+
+=item Arc 1950
+
+=item NAD 27
+
+=item NAD 83
+
+=head1 SEE ALSO
+
+The module L<Geo::Ellipsoid|https://raku.land/zef:tbrowder/Geo::Ellipsoid>
+has routines to perform calculations on the ellipsoid.
+       
+=head1 AUTHOR
+
+Kevin Pye <kjpraku@pye.id.au>
+
+While this is similar in intent to the Perl module Geo::Ellipsoids, its actual
+history is part of the Perl Geo::Coordinates::UTM module, via the Raku
+equivalent.
+None of the useful methods of the Perl module have yet been implemented.
+
+Much of the data in this module is taken from the Perl Geo::Coordinates::UTM module.
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2022 Kevin Pye
+
+This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
+
+=end pod

@@ -1,6 +1,7 @@
-Revision history for Geo-Ellipsoid
+Revision history for Geo-Ellipsoids
 
 {{$NEXT}}
+    - Change name to Geo::Ellipsoids
 
 0.0.1  2022-05-18T16:19:35+10:00
     - Initial version
